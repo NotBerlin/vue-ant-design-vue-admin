@@ -1,13 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import store from '../store'
+import base_route from './base'
 
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    name: "home",
-    component: ()=> import(/*webpackChunkName */ '@/views/Home.vue'),
-  }
-];
+
+const routes: Array<RouteRecordRaw> = [];
+
+base_route.forEach(element => {
+  routes.push(element);
+});
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

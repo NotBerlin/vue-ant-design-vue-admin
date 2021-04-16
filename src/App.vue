@@ -18,7 +18,9 @@ function getRouteAPI() {
     (res) => {
       debugger
     },
-    (err) => {}
+    (err) => {
+      debugger
+    }
   );
   return result;
 }

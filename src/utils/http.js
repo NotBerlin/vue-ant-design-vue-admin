@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 let router = import("@/router");
 
-// axios.defaults.baseURL = "/api";
+// axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 // axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 // axios.defaults.headers["X-Requested-With"] = "XMLHttpRequest";
 // axios.defaults.headers["Cache-Control"] = "no-cache";

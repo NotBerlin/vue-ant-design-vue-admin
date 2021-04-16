@@ -1,7 +1,10 @@
 <template>
   <Page>
     <div id="home">{{ msg }}</div>
-    <button @click="abc">abc</button>
+    <a-button type="primary" @click="abc">
+      Primary
+    </a-button>
+    <a-input placeholder="123" />
   </Page>
 </template>
 <script>
@@ -14,14 +17,6 @@ export default {
     const msg = "123";
     const abc = function () {
       console.log(test());
-      // test().then(
-      //   (res) => {
-      //     debugger;
-      //   },
-      //   (err) => {
-      //     debugger;
-      //   }
-      // );
     };
 
     return { msg, abc };

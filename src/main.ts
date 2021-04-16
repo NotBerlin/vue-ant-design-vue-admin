@@ -1,8 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import './registerServiceWorker'
-import router from './router'
-import store from './store'
 require('./servers/mock-server.js')
 
-createApp(App).use(store).use(router).mount('#app')
+import Antd from './components/antd.js'
+
+import router from './router'
+import store from './store'
+
+const app = createApp(App);
+app.config['productionTip'] = false;
+
+app.use(Antd);
+app.use(store).use(router).mount('#app');
+

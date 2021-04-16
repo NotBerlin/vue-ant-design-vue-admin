@@ -36,3 +36,30 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### router
 配置动态路由
+```js
+let menus = {
+  path: "/user", // 路由路径
+  name: "user", // 页面名称，跟页面内的name属性要相同
+  meta: {
+    title: "用户管理", // 页面标签的标题
+    icon: "user", // 菜单图标名称，要在@/icons/svg目录下能找到
+    hidden: false, // 是否隐藏该菜单，不配置则默认显示；为true不显示
+    noClose: false, // 是否不可关闭，不配置则默认可关闭（显示“x”）；为true则不可关闭，将一直显示，如首页
+    noCache: false // 是否缓存页面，不配置则默认缓存（保留对页面的操作及输入的数据）；为true则不缓存
+  },
+  children: [] // 子菜单，结构跟父菜单一样
+};
+```
+
+
+### ant-design-vue
+```js
+（当前是vue3.0版本，需要antd下一代版本使用命令npm i --save ant-design-vue@next）
+1、yarn add ant-design-vue
+4、src/main.js
+import {Button,Switch} from 'ant-design-vue'
+Vue.use(Button).use(Switch)
+5、使用
+<a-button type="primary">哈哈哈</a-button>
+<a-switch defaultChecked />
+```
