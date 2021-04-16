@@ -1,5 +1,24 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <Page>
+    <div id="about">{{ msg }}</div>
+  </Page>
 </template>
+<script>
+import Page from "../components/Page";
+
+export default {
+  name: "About",
+  components: { Page },
+  setup() {
+    const msg = "about";
+
+    return { msg };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+#about {
+    
+}
+</style>
