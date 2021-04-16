@@ -8,7 +8,7 @@
   </Page>
 </template>
 <script>
-import Page from "../components/Page";
+import Page from "@/components/Page";
 
 export default {
   name: "Home",

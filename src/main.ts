@@ -3,6 +3,7 @@ import App from './App.vue';
 import './registerServiceWorker'
 require('./servers/mock-server.js')
 
+
 import Antd from './components/antd.js'
 
 import router from './router'

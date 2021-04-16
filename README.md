@@ -63,3 +63,134 @@ Vue.use(Button).use(Switch)
 <a-button type="primary">哈哈哈</a-button>
 <a-switch defaultChecked />
 ```
+
+
+### 全局样式global.scss
+
+
+
+### Composition API
+例，将form表单和form事件封装到一个函数中，在setup调用此函数返回得到的对象用点展开运算符赋值到return的对象中
+```js
+<script>
+import { reactive, ref } from "@vue/reactivity";
+
+// 表单相关数据和事件
+function formAPI() {
+  let formRef = ref(); //绑定表单，对提交时触发表单验证规则
+  let formState = reactive({
+    number: "", // 默认值 与输入框绑定  如果想输入框能用placeholder, 那么就置为null
+    password: "",
+    type: null, // 如果想默认显示第一项 写成第一项的值就行  写 ' ' 会默认为空
+  });
+  let rules = {
+    name: [
+      {
+        required: true,
+        message: "请输入账号",
+        trigger: "blur",
+      },
+    ],
+    password: [
+      {
+        required: true,
+        message: "请输入密码",
+        trigger: "blur",
+      },
+    ],
+    type: [
+      {
+        required: true,
+        message: "请选择类型",
+        trigger: "blur",
+      },
+    ],
+  };
+  let typeArr = ref([
+    {
+      id: 1,
+      type: "类型1",
+    },
+    {
+      id: 2,
+      type: "类型2",
+    },
+  ]);
+  const onSubmit = () => {
+    // formRef 就是为了这一步  这样点击提交的时候  会触发表单验证 注：绑定formRef时不是{this.formRef}
+    formRef.value
+      .validate()
+      .then(() => {
+        console.log("values", formState);
+        // 表单验证通过就会执行这里  你就可以操作了
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+  return {
+    formRef,
+    formState,
+    rules,
+    typeArr,
+    onSubmit,
+  };
+}
+
+export default {
+  name: "login",
+  setup() {
+    const formData = formAPI();
+
+    return {
+      ...formData,
+    };
+  },
+
+  render() {
+    return (
+      <div id="login">
+        <div class="password-frame">
+          <a-form
+            ref="formRef"
+            model={this.formState}
+            rules={this.rules}
+            label-col={{ span: 4 }}
+          >
+            <a-form-item ref="number" label="账号" name="number">
+              <a-input v-model={[this.formState.number, "value"]} />
+            </a-form-item>
+            <a-form-item ref="password" label="密码" name="password">
+              <a-input v-model={[this.formState.password, "value"]} />
+            </a-form-item>
+            <a-form-item ref="password" label="密码" name="password">
+              <a-input v-model={[this.formState.password, "value"]} />
+            </a-form-item>
+            <a-form-item label="下拉选择">
+              <a-select
+                v-model={[this.formState.type, "value"]}
+                placeholder="请选择类型"
+              >
+                {this.typeArr.map((item) => {
+                  return (
+                    <a-select-option
+                      v-model={[item.type, "value"]}
+                      key={item.id}
+                    >
+                      {item.type}
+                    </a-select-option>
+                  );
+                })}
+              </a-select>
+            </a-form-item>
+            <a-form-item label="下拉选择">
+              <a-button onClick={this.onSubmit}>提交</a-button>
+            </a-form-item>
+          </a-form>
+        </div>
+      </div>
+    );
+  },
+};
+</script>
+```

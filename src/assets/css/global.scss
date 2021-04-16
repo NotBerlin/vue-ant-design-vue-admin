@@ -1,0 +1,52 @@
+// 背景渐变颜色
+$background-image: linear-gradient(to bottom right, red, yellow);
+
+// 灰白色
+$grey100: #f5f5f5;
+$grey200: #eeeeee;
+$grey400: #bdbdbd;
+
+// 亮蓝色
+$lightBlue500: #039be5;
+$lightBlue200: #81d4fa;
+$lightBlue100: #b3e5fc;
+$lightBlue50: #e1f5fe;
+
+/* 实现抖动 */
+@keyframes myfirst {
+    0% {
+        transform: scale(1);
+        transform: scale(1);
+    }
+
+    70%,
+    73% {
+        transform: scale(0.9) rotate(-3deg);
+        transform: scale(0.9) rotate(-3deg);
+    }
+
+    77%,
+    83%,
+    90%,
+    97% {
+        transform: scale(1.1) rotate(3deg);
+        transform: scale(1.1) rotate(3deg);
+    }
+
+    80%,
+    87%,
+    93% {
+        transform: scale(1.1) rotate(-3deg);
+        transform: scale(1.1) rotate(-3deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        transform: scale(1) rotate(0);
+    }
+}
+
+a:hover {
+    // background-color:yellow;
+    color: $lightBlue500;
+}
