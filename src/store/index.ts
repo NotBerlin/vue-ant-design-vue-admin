@@ -5,7 +5,8 @@ export default createStore({
     route: [],
     loginInfo: {
       userId: ''
-    }
+    },
+    logined: false
   },
   getters: {
     routeGetter: route=> {

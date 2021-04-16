@@ -1,10 +1,14 @@
 <script>
 import router from "../router/index.ts";
+import store from "@/store";
 
 // 退出登录
 function out() {
   const signOut = function () {
-    router.replace("/");
+    store.state.logined = false;
+    setTimeout(() => {
+      router.replace("/");
+    }, 300);
   };
   return {
     signOut,
@@ -15,6 +19,9 @@ export default {
   name: "head",
   setup() {
     const signOut = out();
+
+    // 查询事件
+    function search() {}
 
     return {
       ...signOut,
@@ -28,12 +35,18 @@ export default {
         </div>
         <div class="right">
           <slot name="sign-out">
-            <a-button onClick={this.signOut} class="item">退出</a-button>
+            <a-button onClick={this.signOut} class="item">
+              退出
+            </a-button>
           </slot>
           <slot name="person"></slot>
           <slot name="action"></slot>
           <slot name="search">
-            <a-input-search placeholder="input search text" style="width: 200px" />
+            <a-input-search
+              placeholder="input search text"
+              style="width: 200px"
+              search={this.search}
+            />
           </slot>
         </div>
       </div>
@@ -70,7 +83,7 @@ export default {
       border-radius: 5px;
     }
 
-    .item{
+    .item {
       margin-left: 10px;
     }
   }

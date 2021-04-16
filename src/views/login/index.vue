@@ -2,6 +2,11 @@
 import { reactive, ref } from "@vue/reactivity";
 import { login } from "@/api/login";
 import router from "@/router/index.ts";
+import store from "@/store"
+import { message } from 'ant-design-vue';
+
+// message提示组件
+const message_component = <message></message>;
 
 // 表单相关数据和事件
 function formAPI() {
@@ -34,10 +39,14 @@ function formAPI() {
         const params = formState;
         login(params).then(
           (res) => {
-            router.push('/cover')
+            message_component.type.success('登录成功')
+            store.state.logined = true;
+            setTimeout(()=>{
+              router.push("/cover");
+            }, 500)
           },
           (err) => {
-              alert("登录错误");
+            alert("登录错误");
           }
         );
         // 表单验证通过就会执行这里  你就可以操作了
@@ -58,6 +67,8 @@ export default {
   name: "login",
   setup() {
     const formData = formAPI();
+
+    
 
     return {
       ...formData,

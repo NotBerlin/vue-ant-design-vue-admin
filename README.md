@@ -194,3 +194,28 @@ export default {
 };
 </script>
 ```
+
+
+### vue3中引入message，notifacation等组件
+```js
+import { message } from 'ant-design-vue';
+
+
+const a = <message></message>;
+a.type.success('登录成功')
+```
+
+
+### 配置路由守卫
+```js
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const isLogin = store.state.logined ? true : false;
+  if (to.path == '/login') {
+    next();
+  } else {
+    // 是否在登录状态下
+    isLogin ? next() : next('/');
+  }
+})
+```
