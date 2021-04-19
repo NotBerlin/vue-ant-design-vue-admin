@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "@/store";
 let router = import("@/router");
+import { message } from "ant-design-vue";
 
 // axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 // axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
@@ -9,6 +10,9 @@ let router = import("@/router");
 // axios.defaults.headers["pragma"] = "no-cache";
 
 let source = axios.CancelToken.source();
+
+// message提示组件
+const message_component = <message></message>;
 
 //请求添加token
 // axios.interceptors.request.use(request => {
@@ -43,22 +47,33 @@ let source = axios.CancelToken.source();
 //返回值解构
 axios.interceptors.response.use(response => {
     let data = response.data;
-    let isJson = (response.headers["content-type"] || "").includes("json");
-    if (isJson) {
-        if (data.code === 200) {
-            return Promise.resolve({
-                data: data.data,
-                msg: data.msg,
-                code: data.code,
-            });
-        }
+    if (data.code === 200) {
+        return data;
+    } else if (data.code === 400) {
+        // alert('登录失败')
+        message_component.type.error('登录失败')
+    } else {
         return Promise.reject(
             data.msg ||
             "网络错误"
         );
-    } else {
-        return data;
     }
+    // let isJson = (response.headers["content-type"] || "").includes("json");
+    // if (isJson) {
+    //     if (data.code === 200) {
+    //         return Promise.resolve({
+    //             data: data.data,
+    //             msg: data.msg,
+    //             code: data.code,
+    //         });
+    //     }
+    //     return Promise.reject(
+    //         data.msg ||
+    //         "网络错误"
+    //     );
+    // } else {
+    //     return data;
+    // }
 }, err => {
     let isCancel = axios.isCancel(err);
     if (isCancel) {

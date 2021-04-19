@@ -11,6 +11,7 @@ function getResult() {
 }
 
 const getRoute = function () {
+    console.log('/getRoute')
     const route = true;
     return {
         route: route
@@ -18,6 +19,7 @@ const getRoute = function () {
 }
 
 const login = function (data) {
+    console.log('/login')
     const result = getResult()
     data.body = Object.prototype.toString.call(data.body) === '[object String]' ? JSON.parse(data.body) : data.body;
     if (data.body.number === 'admin' && data.body.password === 'admin') {

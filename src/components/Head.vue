@@ -1,11 +1,12 @@
 <script>
 import router from "../router/index.ts";
 import store from "@/store";
+import mixins_utils from "@/mixins/utils";
 
 // 退出登录
 function out() {
   const signOut = function () {
-    store.state.logined = false;
+    mixins_utils.methods.setSessionStorage("logined", false);
     setTimeout(() => {
       router.replace("/");
     }, 300);

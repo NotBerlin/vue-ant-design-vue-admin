@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import base_route from './base'
 import classfiy_route from './classfiy'
 import store from "../store"
+import mixins_utils from "../mixins/utils"
 
 
 const routes: Array<RouteRecordRaw> = [];
@@ -21,7 +22,8 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  const isLogin = store.state.logined ? true : false;
+  const isLogin = mixins_utils.methods.getSessionStorage('logined') ? true : false;
+  // const isLogin = store.state.logined ? true : false;
   if (to.path == '/login') {
     next();
   } else {

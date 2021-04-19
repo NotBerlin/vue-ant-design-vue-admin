@@ -2,8 +2,9 @@
 import { reactive, ref } from "@vue/reactivity";
 import { login } from "@/api/login";
 import router from "@/router/index.ts";
-import store from "@/store"
-import { message } from 'ant-design-vue';
+import store from "@/store";
+import { message } from "ant-design-vue";
+import mixins_utils from "@/mixins/utils";
 
 // message提示组件
 const message_component = <message></message>;
@@ -39,15 +40,16 @@ function formAPI() {
         const params = formState;
         login(params).then(
           (res) => {
-            message_component.type.success('登录成功')
-            store.state.logined = true;
-            setTimeout(()=>{
+            if (res.code !== 200) return;
+            message_component.type.success("登录成功");
+            console.log(mixins_utils)
+            mixins_utils.methods.setSessionStorage('logined', true)
+            // store.state.logined = true;
+            setTimeout(() => {
               router.push("/cover");
-            }, 500)
+            }, 500);
           },
-          (err) => {
-            alert("登录错误");
-          }
+          (err) => {}
         );
         // 表单验证通过就会执行这里  你就可以操作了
       })
@@ -67,9 +69,6 @@ export default {
   name: "login",
   setup() {
     const formData = formAPI();
-
-    
-
     return {
       ...formData,
     };

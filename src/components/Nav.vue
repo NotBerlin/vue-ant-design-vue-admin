@@ -62,10 +62,5 @@ export default {
     line-height: 40px;
     padding-left: 4px;
   }
-  .route-item:hover {
-    transform: scale(1.01);
-    position: relative;
-    background: $lightBlue100;
-  }
 }
 </style>
