@@ -226,3 +226,26 @@ router.beforeEach((to, from, next) => {
 ```js
 yarn add @antv/g2
 ```
+
+
+### 添加全局事件eventbus
+```JS
+import emitter from '@/utils/eventBus'
+ 
+// listen to an event
+emitter.on('foo', e => console.log('foo', e) )
+ 
+// listen to all events
+emitter.on('*', (type, e) => console.log(type, e) )
+ 
+// fire an event
+emitter.emit('foo', { a: 'b' })
+ 
+// clearing all events
+emitter.all.clear()
+ 
+// working with handler references:
+function onFoo() {}
+emitter.on('foo', onFoo)   // listen
+emitter.off('foo', onFoo)  // unlisten
+```
