@@ -12,6 +12,10 @@ import store from './store'
 const app = createApp(App);
 app.config['productionTip'] = false;
 
+app.config.globalProperties = {
+    $_weather: '晴天'
+};
+
 app.use(Antd);
 app.use(store).use(router).mount('#app');
 

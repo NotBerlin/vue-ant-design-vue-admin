@@ -1,3 +1,4 @@
+// 正常使用mockjs配置
 var Mock = require('mockjs')
 
 function getResult() {
@@ -46,8 +47,31 @@ const funcArr = [
 // 第三个参数可以是对象也可以是返回对象的函数
 Mock.mock('/getRoute', 'get', getRoute)
 Mock.mock('/login', 'post', login)
-
-// funcArr.forEach(element => {
-//     Mock.mock(element.fn.name, element.method, element.fn)
-// });
 console.log(Mock)
+
+
+// 使用webpack-mock-server配置
+// const proxy = {
+//     'POST /api/login': (req, res) => {
+//         debugger
+//     },
+//     'GET /getRoute': (req, res) => {
+//         debugger
+//     },
+//     // 'POST /api/user/list': (req,res) => {
+//     //     let userList = JSON.parse(fs.readFileSync(`mock/data/userList.json`).toString()).list;
+//     //     const pageIndex = req.body.pageIndex;
+//     //     let list = userList.slice((pageIndex-1)*10,pageIndex*10);
+//     //     let data = JSON.stringify({
+//     //             "status": 200,
+//     //             "data": {
+//     //                 "list": list,
+//     //                 "total": 13
+//     //             }
+//     //         });           
+
+//     //     const json = JSON.parse(data);
+//     //     return res.json(json);
+//     // },
+// };
+// module.exports = proxy;

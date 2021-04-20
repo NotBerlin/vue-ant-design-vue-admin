@@ -1,0 +1,1 @@
+export { Chart } from '@antv/g2';

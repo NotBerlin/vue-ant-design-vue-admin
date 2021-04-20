@@ -2,6 +2,7 @@ const path = require('path');
 const resolve = dir => path.join(__dirname, dir);
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const webpackMock = require('webpack-api-mocker');
 
 // 是否为生产环境
 const isProduction = process.env.NODE_ENV !== 'development'
@@ -66,6 +67,9 @@ module.exports = {
         /* 使用代理 */
         proxy: {
             '/api': {
+                before(app) {
+                    webpackMock(app, path.resolve(__dirname, 'src/servers/mock-server.js'));
+                },
                 /* 目标代理服务器地址 */
                 target: 'http://localhost:8080/',
                 /* 允许跨域 */

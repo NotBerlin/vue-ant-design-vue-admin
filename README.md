@@ -219,3 +219,10 @@ router.beforeEach((to, from, next) => {
   }
 })
 ```
+
+
+
+### 添加antv/g2，分析每天上班行程
+```js
+yarn add @antv/g2
+```
