@@ -10,9 +10,7 @@ export default {
   },
   setup(props, context) {
     const clickBtn = function () {
-      context.emit("search", {
-        abc: "123",
-      });
+      context.emit("search", {});
     };
     return { clickBtn };
   },

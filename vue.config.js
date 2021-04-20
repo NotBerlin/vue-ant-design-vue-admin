@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const webpackMock = require('webpack-api-mocker');
 
+
+console.log(process.env)
 // 是否为生产环境
 const isProduction = process.env.NODE_ENV !== 'development'
 

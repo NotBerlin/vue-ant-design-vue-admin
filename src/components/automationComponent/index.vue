@@ -16,6 +16,7 @@
 import InputComponent from "./InputComponent.vue";
 import ButtonComponent from "./ButtonComponent.vue";
 import emitter from "@/utils/eventBus";
+import { reactive } from "@vue/reactivity";
 
 export default {
   name: "form",
@@ -25,11 +26,21 @@ export default {
   },
   setup(props, context) {
     const { config } = context.attrs;
+    let form_config = {};
+    config.forEach((element) => {
+      if (element.type !== "ButtonComponent") {
+        form_config[element.model] = "";
+      }
+    });
+    const form = reactive(form_config);
     const search = function (data) {
       // fire an event
-      emitter.emit("foo", data);
+      emitter.emit("search", form);
     };
-    return { config, search };
+    emitter.on("form", (e) => {
+      form[e.key] = e.value;
+    });
+    return { config, search, form };
   },
 };
 </script>

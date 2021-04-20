@@ -20,6 +20,7 @@ function automationData() {
     {
       type: "InputComponent",
       model: "name",
+      text: '名字'
     },
   ];
   return {

@@ -18,7 +18,8 @@ export default {
   },
   setup(props, context) {
     // listen to an event
-    emitter.on("foo", (e) => {
+    emitter.on("search", (e) => {
+      debugger
       console.log("foo", e)
     });
   },
