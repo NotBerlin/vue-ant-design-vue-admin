@@ -26,7 +26,9 @@ export default {
         <Head></Head>
         <div class="content">
           <Nav></Nav>
-          <router-view />
+          <transition name="slide-left">
+            <router-view class="child-view" />
+          </transition>
         </div>
       </div>
     );
@@ -44,6 +46,28 @@ export default {
     height: calc(100% - 51px);
     width: 100%;
     display: flex;
+  }
+
+  .transition {
+    height: 100%;
+    width: 100%;
+  }
+
+  .child-view {
+    width: 100%;
+    height: 100%;
+  }
+  .slide-left-enter {
+    -webkit-transform: translate(30px, 0);
+    -moz-transform: translate(30px, 0);
+    -o-transform: translate(30px, 0);
+    transform: translate(30px, 0);
+  }
+  .slide-right-leave-active {
+    transition: transform .5s;
+    -webkit-transform: translate(30px, 0);
+    -moz-transform: translate(30px, 0);
+    -o-transform: translate(30px, 0);
   }
 }
 </style>

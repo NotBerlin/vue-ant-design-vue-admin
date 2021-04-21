@@ -46,6 +46,7 @@ export default {
   height: 100%;
   width: 200px;
   border-right: 1px solid $grey200;
+  overflow: hidden;
 
   a {
     font-weight: bold;

@@ -17,10 +17,17 @@ export default {
     TableComponent: TableComponent,
   },
   setup(props, context) {
+    let searchConfig = {};
+    for (let item of props.config) {
+      if (item.type === "ButtonComponent") {
+        searchConfig = item;
+        break;
+      }
+    }
     // listen to an event
     emitter.on("search", (e) => {
-      debugger
-      console.log("foo", e)
+      console.log("foo", e);
+      searchConfig.event.search(e);
     });
   },
   render() {

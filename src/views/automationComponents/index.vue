@@ -9,18 +9,38 @@
 <script>
 import FormTable from "@/components/form-table";
 
+import { WomanOutlined } from "@ant-design/icons-vue";
 // 自动化组件配置参数
 function automationData() {
   const list = [
     {
       type: "ButtonComponent",
       model: "",
-      event: "search",
+      event: {
+        search: (e) => {
+          return []
+        },
+      },
     },
     {
       type: "InputComponent",
       model: "name",
-      text: '名字'
+      text: "名字",
+      option: {
+        textPosition: "left",
+        placeholder: "自动化配置form表单",
+        prefix: () => <WomanOutlined />,
+      },
+    },
+    {
+      type: "InputComponent",
+      model: "doctor",
+      text: "医生名字",
+      option: {
+        textPosition: "top",
+        placeholder: "自动化配置form表单",
+        prefix: () => "¥",
+      },
     },
   ];
   return {
