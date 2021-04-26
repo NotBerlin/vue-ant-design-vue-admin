@@ -24,6 +24,11 @@ const classfiy_route = [
         name: "AutomationComponents",
         component: () => import(/*webpackChunkName */ '@/views/automationComponents/index.vue'),
     },
+    {
+        path: "/animation",
+        name: "Animation",
+        component: () => import(/*webpackChunkName */ '@/views/animation'),
+    },
 ]
 
 export default classfiy_route;
