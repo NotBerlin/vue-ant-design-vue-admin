@@ -249,3 +249,6 @@ function onFoo() {}
 emitter.on('foo', onFoo)   // listen
 emitter.off('foo', onFoo)  // unlisten
 ```
+
+
+#### first_shell脚本命令不用管，脚本文件在另一个git仓库
